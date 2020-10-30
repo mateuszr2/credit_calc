@@ -14,17 +14,35 @@
 
 	<h:form id="bla">
 		<h:panelGrid id="grid" columns="3" cellpadding="5">
-  			   	<p:outputLabel for="kwota" value="Kwota:" />
-  			   	<p:inputText id="kwota" value="#{creditBB.kwota}" required="true" requiredMessage="kwota jest wymagana" />
-				<p:message for="kwota" />
+  			 <p:outputLabel for="kwota" value="Kwota:" />
+  			 <p:inputText id="kwota" value="#{creditBB.kwota}" 
+  			   	required="true"
+  			   	converterMessage="kwota musi być liczbą" 
+  			   	requiredMessage="kwota jest wymagana" 
+  			   	validatorMessage="kwota musi wynosić minimum 1000">
+  			   	<f:validateDoubleRange minimum="1000"/>
+		</p:inputText>
+  		<p:message for="kwota"/>
   		
-  				<p:outputLabel for="miesiac" value="Miesiac:" />
-  			   	<p:inputText id="miesiac" value="#{creditBB.miesiac}" required="true" requiredMessage="ilość miesięcy jest wymagana" />
-				<p:message for="miesiac" />
+  		<p:outputLabel for="miesiac" value="Miesiac:" />
+  		<p:inputText id="miesiac" value="#{creditBB.miesiac}" 
+  			   	required="true" 
+  			   	requiredMessage="ilość miesięcy jest wymagana" 
+  			   	converterMessage="ilość miesięcy jest liczbą całkowitą"
+				validatorMessage="ilość miesięcy wynosi minimum 1 miesiąc">
+  			   	<f:validateLongRange minimum="1"/>
+  		</p:inputText>
+  		<p:message for="miesiac" />
   		
-  				<p:outputLabel for="procent" value="Procent:" />
-  			   	<p:inputText id="procent" value="#{creditBB.procent}" required="true" requiredMessage="procent jest wymagany"/>
-				<p:message for="procent" />
+  		<p:outputLabel for="procent" value="Procent:" />
+  	   	<p:inputText id="procent" value="#{creditBB.procent}" 
+  	   		required="true" 
+  	   		requiredMessage="procent jest wymagany"
+  	   		converterMessage="procent jest liczbą"
+  	   		validatorMessage="minimalny procent to 3%">
+  			   	<f:validateLongRange minimum="3"/>
+		</p:inputText>
+		<p:message for="procent" />
   		
 		
 		
@@ -32,7 +50,7 @@
 		
 
 		<p:commandButton value="Oblicz" action="#{creditBB.calc()}" update="@form"/>
-		</h:panelGrid>
+	</h:panelGrid>
 		<p:messages id="msg" />
 	</h:form>
 </p:panel>

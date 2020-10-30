@@ -11,9 +11,9 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class CreditBB {
-	private String kwota;
-	private String miesiac;
-	private String procent;
+	private Double kwota;
+	private Integer miesiac;
+	private Double procent;
 	private Double result;
 
 	@Inject
@@ -23,27 +23,27 @@ public class CreditBB {
 
 
 
-	public String getKwota() {
+	public Double getKwota() {
 		return kwota;
 	}
 
-	public void setKwota(String kwota) {
+	public void setKwota(Double kwota) {
 		this.kwota = kwota;
 	}
 
-	public String getMiesiac() {
+	public Integer getMiesiac() {
 		return miesiac;
 	}
 
-	public void setMiesiac(String miesiac) {
+	public void setMiesiac(Integer miesiac) {
 		this.miesiac = miesiac;
 	}
 
-	public String getProcent() {
+	public Double getProcent() {
 		return procent;
 	}
 
-	public void setProcent(String procent) {
+	public void setProcent(Double procent) {
 		this.procent = procent;
 	}
 
@@ -57,9 +57,9 @@ public class CreditBB {
 
 	public boolean doTheMath() {
 		try {
-			double kwota = Double.parseDouble(this.kwota);
-			double miesiac = Double.parseDouble(this.miesiac);
-			double procent = Double.parseDouble(this.procent);
+			double kwota = this.kwota;
+			double miesiac = this.miesiac;
+			double procent = this.procent;
 			
 			kwota = (kwota / miesiac);
 			result = kwota+(kwota * procent/100);
@@ -84,7 +84,7 @@ public class CreditBB {
 	// Put result in messages on AJAX call
 	public String calc_AJAX() {
 		if (doTheMath()) {
-			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "MiesiÄ™czna rata to: " + result, null));
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Miesiêczna rata to: " + result, null));
 		}
 		return null;
 	}
