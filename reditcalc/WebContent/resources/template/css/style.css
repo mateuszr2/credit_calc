@@ -1,0 +1,18 @@
+body{
+	font-family: Comic Sans MS, Comic Sans, cursive;
+	background-size: cover;
+	margin:0;
+}
+
+.bottom-space{
+	margin-bottom: 1em;
+}
+
+.top-space{
+	margin-top: 1em;
+}
+
+#page_wrapper{
+	margin: 10em;
+	min-width: 700px;
+}
